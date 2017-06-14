@@ -31,6 +31,16 @@ bikeRouter.route('/Bikes')
         res.status(201).send(bike);
     });
 
+bikeRouter.route('/Bikes/:id')
+    .get(function(req, res) {
+        Bike.findById(req.params.id, function (err, bikes) {
+            if (err)
+                res.status(500).send(err);
+            else
+                res.json(bikes);
+        });
+    })
+
 app.use('/api', bikeRouter);
 
 app.get('/', function (req, res) {
