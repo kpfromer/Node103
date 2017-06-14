@@ -14,7 +14,10 @@ app.use(bodyParser.json());
 var bikeRouter = express.Router();
 bikeRouter.route('/Bikes')
     .get(function(req, res) {
-        Bike.find(function (err, bikes) {
+        var query = {};
+        if (req.query.mfg)
+            query.mfg = req.query.mfg;
+        Bike.find(query, function (err, bikes) {
             if (err)
                 res.status(500).send(err);
             else
