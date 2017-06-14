@@ -1,9 +1,12 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Bike = require('./models/bikeModel');
 var app = express();
 
 var port = process.env.PORT || 3000;
+
+var db = mongoose.connect('mongodb://localhost/bikeAPI');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -11,17 +14,18 @@ app.use(bodyParser.json());
 var bikeRouter = express.Router();
 bikeRouter.route('/Bikes')
     .get(function(req, res) {
-        var bike = new Bike({
-            "mfg": "Specialized",
-            "model": "Stumpjumper Carbon Expert 6Fattie",
-            "cost": 5000,
-            "ridden": true});
-        res.json(bike);
+        Bike.find(function (err, bikes) {
+            if (err)
+                res.status(500).send(err);
+            else
+                res.json(bikes);
+        });
     })
     .post(function (req, res) {
         var bike = new Bike(req.body);
         console.log(bike);
-        res.send(bike);
+        bike.save();
+        res.status(201).send(bike);
     });
 
 app.use('/api', bikeRouter);
