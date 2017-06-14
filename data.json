@@ -1,0 +1,30 @@
+bikes: [
+{
+"mfg": "Yeti",
+"model": "575 Enduro",
+"cost": 2300,
+"year": 2004,
+"ridden": true
+},
+{
+"mfg": "Specialized",
+"model": "Stumpjumper Carbon Expert 6Fattie",
+"cost": 5000,
+"year": 2017,
+"ridden": true
+},
+{
+"mfg": "Ibis",
+"model": "Mojo SL-R",
+"cost": 7000,
+"year": 2008,
+"ridden": true
+},
+{
+"mfg": "Ibis",
+"model": "Mojo SL-R",
+"cost": 8000,
+"year": 2013,
+"ridden": true
+}
+]
