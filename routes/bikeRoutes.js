@@ -4,7 +4,7 @@ var routes = function (Bike) {
 
     var bikeRouter = express.Router();
 
-    bikeRouter.route('/Bikes')
+    bikeRouter.route('/')
         .get(function(req, res) {
             var query = {};
             if (req.query.mfg)
@@ -23,7 +23,7 @@ var routes = function (Bike) {
             res.status(201).send(bike);
         });
 
-    bikeRouter.route('/Bikes/:id')
+    bikeRouter.route('/:id')
         .get(function(req, res) {
             Bike.findById(req.params.id, function (err, bikes) {
                 if (err)

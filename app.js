@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 bikeRouter = require('./routes/bikeRoutes')(Bike);
 
-app.use('/api', bikeRouter);
+app.use('/api/Bikes', bikeRouter);
 
 app.get('/', function (req, res) {
     res.send('welcome to my api');
