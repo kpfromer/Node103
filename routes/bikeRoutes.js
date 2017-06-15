@@ -31,6 +31,21 @@ var routes = function (Bike) {
                 else
                     res.json(bikes);
             });
+        })
+        .put(function(req, res) {
+            Bike.findById(req.params.id, function(err, bike) {
+                if (err)
+                    res.status(500).send(err);
+                else {
+                    bike.mfg = req.body.mfg;
+                    bike.year = req.body.year;
+                    bike.cost = req.body.cost;
+                    bike.ridden = req.body.ridden;
+                    bike.model = req.body.model;
+                    bike.save();
+                    res.json(bike);
+                };
+            })
         });
 
     return bikeRouter;
