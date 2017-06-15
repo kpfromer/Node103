@@ -75,6 +75,15 @@ var routes = function (Bike) {
                     res.json(req.bike);
                 }
             });
+        })
+        .delete(function (req, res) {
+            req.bike.remove(function (err) {
+                if (err) {
+                    res.status(500).send(err);
+                } else {
+                    res.status(200).send('removed bike');
+                }
+            });
         });
 
     return bikeRouter;
